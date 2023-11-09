@@ -1,15 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export type Task = {
-    id: number;
+    id: string;
     text: string;
     date: Date;
     isCompleted: boolean;
 }
 
 const initialState = {
-    
-
+    tasks: {}
 }
 
 export const taskModel = createSlice({

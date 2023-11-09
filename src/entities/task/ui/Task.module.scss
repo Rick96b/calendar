@@ -1,0 +1,25 @@
+.task {
+    display: flex;
+
+    padding: 20px;
+
+    font-family: var(--main-font);
+    text-align: center;
+
+    border: 1px solid #D0BEBA;
+    border-radius: 13px;
+}
+
+.taskContainer {
+    margin: auto;
+}
+
+.taskText {
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.taskDate {
+    font-size: 16px;
+    line-height: 1.5;
+}
