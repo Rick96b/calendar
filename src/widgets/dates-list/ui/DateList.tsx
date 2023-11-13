@@ -10,11 +10,16 @@ import classNames from 'classnames';
 
 const DateList = () => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
-  const dates = getDatesAroundDate(currentDate, 7)
+  const [dates, setDates] = useState(getDatesAroundDate(currentDate, 7))
   const ref = useRef<HTMLUListElement>(null);
 
-  const clickHandler = (index:number) => {
+  const clickHandler = (index:number, event:React.MouseEvent) => {
     setCurrentDate(dates[index])
+    event.currentTarget.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'center'
+    });
   }
 
   return (
@@ -22,7 +27,7 @@ const DateList = () => {
       {dates.map((date, index) =>  
         <li 
           className={classNames(styles.dateItem, date === currentDate ? styles.active : '')} 
-          onClick={(event) => clickHandler(index)} 
+          onClick={(event) => clickHandler(index, event)} 
           key={index}
         >
           <span className={styles.date}>{date.getDate()}</span>

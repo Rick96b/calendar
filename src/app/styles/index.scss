@@ -4,7 +4,20 @@
     --main-font: 'Montserrat', Aerial;
 }
 
-.App {
+.App {  
+    display: flex;
+    flex-direction: column;
+
     background-color: #333333;
     color: #fff;
+}
+
+html, body, #root, .App {
+    height: 100%;
+}
+
+.content {
+    flex-grow: 1;
+
+    margin-bottom: 30px;
 }
