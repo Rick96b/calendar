@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export type Task = {
-    id: string;
+    id?: string;
     text: string;
-    date: Date;
+    date: string;
+    time: string;
     isCompleted: boolean;
 }
 

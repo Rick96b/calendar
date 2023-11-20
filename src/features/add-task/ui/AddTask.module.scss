@@ -1,0 +1,32 @@
+.addTaskIcon {
+    width: 35px !important;
+    height: 35px !important;
+
+    color: #fff !important;
+}
+
+.addTaskModal {
+    display: flex;
+}
+
+.addTaskForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    max-width: 80%;
+
+    margin: auto;
+    padding: 20px;
+
+    background-color: #ffffff;
+    border-radius: 15px;
+}
+
+.textInput {
+    grid-column: 1 / 3;
+}
+
+.addTaskButton {
+    grid-column: 1 / 3;
+}
