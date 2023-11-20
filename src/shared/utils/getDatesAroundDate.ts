@@ -1,14 +1,11 @@
-export function getDatesAroundDate(date: Date, datesCount: number) {
-    let dates: Date[] = [date]
+import dayjs from "dayjs";
+
+export function getDatesAroundDate(date: string, datesCount: number) {
+    const formattedDate = dayjs(date)
+    let dates: string[] = [formattedDate.format('YYYY-MM-DD')]
     for(let i = 1; i <= datesCount; i++) {
-        dates.push(addDaysToDate(i, date))
-        dates.unshift(addDaysToDate(-i, date))
+        dates.push(formattedDate.add(i, 'd').format('YYYY-MM-DD'))
+        dates.unshift(formattedDate.add(-i, 'd').format('YYYY-MM-DD'))
     }
     return dates;
-}
-
-function addDaysToDate(days: number, currentDate: Date) {
-    var newDate = new Date(currentDate.valueOf());
-    newDate.setDate(newDate.getDate() + days);
-    return newDate;
 }

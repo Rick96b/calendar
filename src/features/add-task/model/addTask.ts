@@ -1,10 +1,19 @@
 import dayjs from "dayjs"
 import { taskModel } from "entities/task"
-import { doc, setDoc } from "firebase/firestore"
+import { arrayUnion, doc, updateDoc, getDoc, setDoc } from "firebase/firestore"
 import { firestoreDB } from "shared/firebase/config"
 
 export const addTask = async (task: taskModel.Task) => {
     const date = dayjs(task.date)
-    console.log(task)
-    await setDoc(doc(firestoreDB, 'tasks', date.format('YYYY-MM-DD')), task)
+    const tasksRef = doc(firestoreDB, 'tasks', date.format('YYYY-MM-DD'))
+    if((await getDoc(tasksRef)).exists()) {
+        await updateDoc(tasksRef, {
+            tasks: arrayUnion(task)
+        })
+    } else {
+        setDoc(tasksRef, {
+            tasks: [task]
+        })
+    }
+    
 }
