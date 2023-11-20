@@ -12,13 +12,14 @@ const AddTask = () => {
   const timeField = useFormField();
   const textField = useFormField();
 
-  function submitHandler() {
+  function submitHandler(evt: React.FormEvent) {
+    evt.preventDefault();
     addTask({
       text: textField.value,
       date: dateField.value,
       time: timeField.value,
       isCompleted: false
-    })
+    }).then(() => setOpen(false))
   }
 
   return (
@@ -33,13 +34,14 @@ const AddTask = () => {
       >
         <form 
         className={styles.addTaskForm}
-        onSubmit={submitHandler}
+        onSubmit={(evt) => submitHandler(evt)}
       >
           <TextField
             id="date"
             label="Birthday"
             type="date"
             className={styles.textField}
+            required
             InputLabelProps={{
               shrink: true,
             }}
@@ -49,8 +51,8 @@ const AddTask = () => {
             id="time"
             label="Alarm clock"
             type="time"
-            defaultValue="07:30"
             className={styles.textField}
+            required
             InputLabelProps={{
               shrink: true,
             }}
@@ -63,8 +65,8 @@ const AddTask = () => {
             placeholder="Task text..."
             multiline
             className={styles.textInput}
+            required
             rows={5}
-            maxRows={10}
             {...textField}
           />
           <Button className={styles.addTaskButton} type='submit'>

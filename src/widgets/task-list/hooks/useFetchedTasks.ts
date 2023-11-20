@@ -16,10 +16,11 @@ export const useFetchedTasksByDate = (date: Date) => {
             setLoading(false)
         })
         .catch(error => {
+            setTasks([])
             setError(error)
             setLoading(false)
         })
-    }, [])
+    }, [date])
     
     return [tasks, loading, error] as const
 }

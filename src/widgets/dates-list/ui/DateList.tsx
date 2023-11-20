@@ -4,17 +4,17 @@ import { getDatesAroundDate } from 'shared/utils/getDatesAroundDate'
 import styles from './DateList.module.scss'
 import classNames from 'classnames';
 
-/* interface DatesListProps {
-    dates:
-} */
+interface DatesListProps {
+  activeDate: Date;
+  setActiveDate: Function
+} 
 
-const DateList = () => {
-  const [currentDate, setCurrentDate] = useState<Date>(new Date());
-  const [dates, setDates] = useState(getDatesAroundDate(currentDate, 7))
+const DateList:React.FC<DatesListProps> = ({activeDate, setActiveDate}) => {
+  const [dates, setDates] = useState(getDatesAroundDate(activeDate, 7))
   const ref = useRef<HTMLUListElement>(null);
 
   const clickHandler = (index:number, event:React.MouseEvent) => {
-    setCurrentDate(dates[index])
+    setActiveDate(dates[index])
     event.currentTarget.scrollIntoView({
       behavior: 'smooth',
       block: 'center',
@@ -26,7 +26,7 @@ const DateList = () => {
     <ul className={styles.dateList} ref={ref}>
       {dates.map((date, index) =>  
         <li 
-          className={classNames(styles.dateItem, date === currentDate ? styles.active : '')} 
+          className={classNames(styles.dateItem, date === activeDate ? styles.active : '')} 
           onClick={(event) => clickHandler(index, event)} 
           key={index}
         >
